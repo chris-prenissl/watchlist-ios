@@ -209,6 +209,11 @@
 			);
 			mainGroup = 21BB76272DAC00B6002A9EC4;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2196D2AE2DD911A7007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */,
+				2196D2AF2DD912C0007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */,
+				2196D2B02DD912DA007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 21BB76312DAC00B6002A9EC4 /* Products */;
 			projectDirPath = "";
@@ -578,6 +583,33 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2196D2AE2DD911A7007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-openapi-generator";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.2;
+			};
+		};
+		2196D2AF2DD912C0007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-openapi-runtime";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.2;
+			};
+		};
+		2196D2B02DD912DA007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-openapi-urlsession";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 21BB76282DAC00B6002A9EC4 /* Project object */;
 }
