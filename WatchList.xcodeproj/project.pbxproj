@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		216999142DEBAA1400D01E15 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 216999132DEBAA1400D01E15 /* OpenAPIRuntime */; };
+		2169995D2DEBC3BE00D01E15 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = 2169995C2DEBC3BE00D01E15 /* OpenAPIURLSession */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		21BB76422DAC00B7002A9EC4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2169995D2DEBC3BE00D01E15 /* OpenAPIURLSession in Frameworks */,
+				216999142DEBAA1400D01E15 /* OpenAPIRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,12 +126,15 @@
 			buildRules = (
 			);
 			dependencies = (
+				216999082DEBA87600D01E15 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				21BB76322DAC00B6002A9EC4 /* WatchList */,
 			);
 			name = WatchList;
 			packageProductDependencies = (
+				216999132DEBAA1400D01E15 /* OpenAPIRuntime */,
+				2169995C2DEBC3BE00D01E15 /* OpenAPIURLSession */,
 			);
 			productName = WatchList;
 			productReference = 21BB76302DAC00B6002A9EC4 /* WatchList.app */;
@@ -211,8 +221,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				2196D2AE2DD911A7007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */,
-				2196D2AF2DD912C0007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */,
-				2196D2B02DD912DA007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */,
+				216999122DEBAA1400D01E15 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */,
+				2169995B2DEBC3BE00D01E15 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 21BB76312DAC00B6002A9EC4 /* Products */;
@@ -275,6 +285,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		216999082DEBA87600D01E15 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 216999072DEBA87600D01E15 /* OpenAPIGenerator */;
+		};
 		21BB76432DAC00B7002A9EC4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 21BB762F2DAC00B6002A9EC4 /* WatchList */;
@@ -585,6 +599,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		216999122DEBAA1400D01E15 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-openapi-runtime";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.2;
+			};
+		};
+		2169995B2DEBC3BE00D01E15 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-openapi-urlsession";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 		2196D2AE2DD911A7007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-openapi-generator";
@@ -593,23 +623,25 @@
 				minimumVersion = 1.7.2;
 			};
 		};
-		2196D2AF2DD912C0007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-openapi-runtime";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.8.2;
-			};
-		};
-		2196D2B02DD912DA007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-openapi-urlsession";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		216999072DEBA87600D01E15 /* OpenAPIGenerator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2196D2AE2DD911A7007F68C9 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */;
+			productName = "plugin:OpenAPIGenerator";
+		};
+		216999132DEBAA1400D01E15 /* OpenAPIRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 216999122DEBAA1400D01E15 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */;
+			productName = OpenAPIRuntime;
+		};
+		2169995C2DEBC3BE00D01E15 /* OpenAPIURLSession */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2169995B2DEBC3BE00D01E15 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */;
+			productName = OpenAPIURLSession;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 21BB76282DAC00B6002A9EC4 /* Project object */;
 }

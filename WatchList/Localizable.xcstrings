@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Movies" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
