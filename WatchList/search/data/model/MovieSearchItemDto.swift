@@ -1,13 +1,9 @@
-import OpenAPIRuntime
-
-extension Operations.searchMovie.Output.Ok.Body.jsonPayload {
-    func toMovieSearchItems() -> [MovieSearchItem] {
-        return self.results?.map { result in
-            MovieSearchItem(
-                id: result.id ?? 0,
-                title: result.title ?? "",
-                description: result.overview ?? ""
-            )
-        } ?? []
+struct MovieSearchItemDto: Decodable {
+    let id: Int
+    let title: String
+    let overview: String
+    
+    func toEntity() -> MovieSearchItem {
+        return MovieSearchItem(id: id, title: title, description: overview)
     }
 }

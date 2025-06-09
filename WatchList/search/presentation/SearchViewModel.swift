@@ -1,7 +1,5 @@
 import Foundation
 import Combine
-import OpenAPIRuntime
-import OpenAPIURLSession
 
 class SearchViewModel: ObservableObject {
     private let searchRepository: SearchRepository
