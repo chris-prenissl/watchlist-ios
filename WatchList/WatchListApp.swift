@@ -11,6 +11,7 @@ struct WatchListApp: App {
         WindowGroup {
             SearchView()
                 .environmentObject(searchViewModel)
+                .environmentObject()
         }
     }
 }

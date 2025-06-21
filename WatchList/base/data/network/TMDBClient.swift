@@ -1,8 +1,13 @@
 import Foundation
 
+struct TMDBSchema {
+    static let tmdbBaseUrl = "https://api.themoviedb.org/3"
+    static let searchMoviePath = "search/movie"
+}
+
 class TMDBClient: TMDBClientProtocol {
     private let apiKey: String
-    private let baseUrl = URL(string: "https://api.themoviedb.org/3")!
+    private let baseUrl = URL(string: TMDBSchema.tmdbBaseUrl)!
 
     init() {
         guard
@@ -20,7 +25,7 @@ class TMDBClient: TMDBClientProtocol {
             let secretsDict = secretsPropertyList as? [String: Any],
             let apiKey = secretsDict[Constants.tmdbApiKeyKey] as? String
         else {
-            fatalError("Failed to load Secrets.plist")
+            fatalError("Failed to load Secrets")
         }
         self.apiKey = apiKey
     }
@@ -29,12 +34,14 @@ class TMDBClient: TMDBClientProtocol {
         var request = URLRequest(
             url:
                 baseUrl
-                .appendingPathComponent("search/movie")
-                .appending(queryItems: [.init(name: "query", value: query)])
+                .appendingPathComponent(TMDBSchema.searchMoviePath)
+                .appending(
+                    queryItems: [.init(name: Constants.query, value: query)]
+                )
         )
         request.setValue(
-            "Bearer \(apiKey)",
-            forHTTPHeaderField: "Authorization"
+            "\(Constants.bearerTokenKey) \(apiKey)",
+            forHTTPHeaderField: Constants.headerAuthorizationKey
         )
 
         do {

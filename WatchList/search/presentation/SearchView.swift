@@ -12,7 +12,7 @@ struct SearchView: View {
                     Text(movie.description)
                 }
             }
-            .searchable(text: $searchText, prompt: "Search movie")
+            .searchable(text: $searchText, prompt: .searchMovie)
             .onChange(of: searchText) {
                 Task {
                     await viewModel.searchMovies(query: searchText)
