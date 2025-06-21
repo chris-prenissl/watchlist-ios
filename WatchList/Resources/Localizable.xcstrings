@@ -1,36 +1,19 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "error_decoding" : {
-      "comment" : "Failed to decode data",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fehler beim Decodieren der Daten"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Failed to decode data."
-          }
-        }
-      }
-    },
     "error_http_status" : {
       "comment" : "HTTP error with status code",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Serverfehler mit status code %1$@."
+            "value" : "Serverfehler mit status code %1$lld."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Server responded with status code %1$@."
+            "value" : "Server responded with status code %1$lld."
           }
         }
       }

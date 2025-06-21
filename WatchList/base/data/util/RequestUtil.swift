@@ -12,7 +12,8 @@ extension URLRequest {
         debugPrint("\(httpMethod ?? "GET") \(url?.absoluteString ?? "")")
     }
 
-    func execute<T>(_: T.Type, session: URLSession) async throws -> T where T: Decodable {
+    func execute<T>(_: T.Type, session: URLSession) async throws -> T
+    where T: Decodable {
         do {
             let (data, response) = try await session.data(for: self)
             log()
@@ -27,19 +28,14 @@ extension URLRequest {
                 )
             }
 
-            do {
-                let result = try JSONDecoder().decode(
-                    T.self,
-                    from: data
-                )
-                return result
-            } catch {
-                throw NetworkError.decodingError
-            }
+            let result = try! JSONDecoder().decode(
+                T.self,
+                from: data
+            )
+            return result
+
         } catch let urlError as URLError {
             throw NetworkError.networkError(urlError)
-        } catch {
-            throw NetworkError.unknownError(error)
         }
     }
 }
