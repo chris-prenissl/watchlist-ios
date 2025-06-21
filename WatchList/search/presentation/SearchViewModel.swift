@@ -6,6 +6,7 @@ class SearchViewModel: ObservableObject {
     private let searchRepository: SearchRepository
 
     var state: ViewState
+    var query: String = ""
     var movieSearchItems: [MovieSearchItem] = []
 
     init(
@@ -22,29 +23,37 @@ class SearchViewModel: ObservableObject {
         let trimmedQuery = query.trimmingCharacters(in: .whitespaces)
         if trimmedQuery.isEmpty {
             await MainActor.run {
-                movieSearchItems = []
-                state = .loaded
+                self.state = .loaded
+                self.query = ""
+                self.movieSearchItems = []
             }
             return
+        }
+        
+        if trimmedQuery == self.query {
+            await MainActor.run {
+                self.state = .loaded
+            }
         }
 
         do {
             await MainActor.run {
-                state = .loading
+                self.state = .loading
+                self.query = trimmedQuery
             }
             let result = try await searchRepository.search(query: trimmedQuery)
 
             await MainActor.run {
-                movieSearchItems = result
-                state = .loaded
+                self.movieSearchItems = result
+                self.state = .loaded
             }
         } catch let error as NetworkError {
             await MainActor.run {
-                state = .error(error.localizedDescription)
+                self.state = .error(error.localizedDescription)
             }
         } catch {
             await MainActor.run {
-                state = .error("An unknown error occurred.")
+                self.state = .error("An unknown error occurred.")
             }
         }
     }

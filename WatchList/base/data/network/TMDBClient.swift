@@ -13,14 +13,20 @@ struct TMDBSearchParameters {
 class TMDBClient: TMDBClientProtocol {
     private let apiKey: String
     private let baseUrl = URL(string: TMDBSchema.tmdbBaseUrl)!
+    private let urlSession: URLSession
 
-    init() {
-        self.apiKey = try! Bundle.main
-            .loadProperty(
-                bundleKey: Constants.secretsBundleKey,
-                propertyKey: Constants.tmdbApiKeyKey,
-                propertyType: String.self
-            )
+    init(apiKey: String? = nil, urlSession: URLSession = .shared) {
+        if let apiKey = apiKey {
+            self.apiKey = apiKey
+        } else {
+            self.apiKey = try! Bundle.main
+                .loadProperty(
+                    bundleKey: Constants.secretsBundleKey,
+                    propertyKey: Constants.tmdbApiKeyKey,
+                    propertyType: String.self
+                )
+        }
+        self.urlSession = urlSession
     }
 
     func searchMovie(query: String) async throws -> [MovieSearchItemDto] {
