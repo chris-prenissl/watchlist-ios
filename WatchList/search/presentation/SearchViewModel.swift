@@ -29,7 +29,7 @@ class SearchViewModel: ObservableObject {
             }
             return
         }
-        
+
         if trimmedQuery == self.query {
             await MainActor.run {
                 self.state = .loaded

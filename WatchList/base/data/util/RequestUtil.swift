@@ -28,7 +28,9 @@ extension URLRequest {
                 )
             }
 
-            let result = try! JSONDecoder().decode(
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            let result = try! decoder.decode(
                 T.self,
                 from: data
             )

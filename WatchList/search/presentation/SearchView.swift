@@ -77,6 +77,6 @@ struct SearchView: View {
 
 struct PreviewSearchClient: TMDBClientProtocol {
     func searchMovie(query: String) async -> [MovieSearchItemDto] {
-        [MovieSearchItemDto(id: 1, title: "Title", overview: "Overview")]
+        [MovieSearchItemDto(id: 1, title: "Title", overview: "Overview", posterPath: nil)]
     }
 }
