@@ -1,12 +1,14 @@
 import Combine
 import Foundation
 
+@Observable
 class SearchViewModel: ObservableObject {
     private let searchRepository: SearchRepository
 
-    @Published var movieSearchItems: [MovieSearchItem] = []
+    var movieSearchItems: [MovieSearchItem] = []
 
-    init(searchRepository: SearchRepository) {
+    init(movieSearchItems: [MovieSearchItem] = [], searchRepository: SearchRepository) {
+        self.movieSearchItems = movieSearchItems
         self.searchRepository = searchRepository
     }
 

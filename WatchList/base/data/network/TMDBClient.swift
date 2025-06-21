@@ -1,6 +1,6 @@
 import Foundation
 
-class TMDBClient {
+class TMDBClient: TMDBClientProtocol {
     private let apiKey: String
     private let baseUrl = URL(string: "https://api.themoviedb.org/3")!
 

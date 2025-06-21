@@ -1,7 +1,7 @@
 class SearchRepository {
-    let client: TMDBClient
+    let client: TMDBClientProtocol
 
-    init(client: TMDBClient) {
+    init(client: TMDBClientProtocol) {
         self.client = client
     }
 

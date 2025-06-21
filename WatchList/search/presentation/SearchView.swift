@@ -1,10 +1,8 @@
 import SwiftUI
 
 struct SearchView: View {
-    @StateObject private var viewModel = SearchViewModel(
-        searchRepository: SearchRepository(client:TMDBClient())
-    )
     @State private var searchText = ""
+    @Environment(SearchViewModel.self) private var viewModel
 
     var body: some View {
         NavigationView {
@@ -26,4 +24,29 @@ struct SearchView: View {
 
 #Preview {
     SearchView()
+        .environment(
+            SearchViewModel(
+                movieSearchItems: [
+                    MovieSearchItem(
+                        id: 1,
+                        title: "Title",
+                        description: "Description"
+                    ),
+                    MovieSearchItem(
+                        id: 2,
+                        title: "Matrix",
+                        description: "Epic sci-fi action film"
+                    )
+                ],
+                searchRepository: SearchRepository(
+                    client: PreviewSearchClient()
+                )
+            )
+        )
+}
+
+struct PreviewSearchClient: TMDBClientProtocol {
+    func searchMovie(query: String) async -> [MovieSearchItemDto] {
+        [MovieSearchItemDto(id: 1, title: "Title", overview: "Overview")]
+    }
 }
