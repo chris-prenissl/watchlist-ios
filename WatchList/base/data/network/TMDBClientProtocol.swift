@@ -1,3 +1,3 @@
 protocol TMDBClientProtocol {
-    func searchMovie(query: String) async -> [MovieSearchItemDto]
+    func searchMovie(query: String) async throws -> [MovieSearchItemDto]
 }

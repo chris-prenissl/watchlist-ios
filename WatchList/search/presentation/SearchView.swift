@@ -6,10 +6,21 @@ struct SearchView: View {
 
     var body: some View {
         NavigationView {
-            List(viewModel.movieSearchItems) { movie in
-                VStack {
-                    Text(movie.title)
-                    Text(movie.description)
+            VStack {
+                switch viewModel.state {
+                case .loading:
+                    ProgressView(.loading)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                case .loaded:
+                    List(viewModel.movieSearchItems) { movie in
+                        SearchItemView(movieSearchItem: movie)
+                    }
+                case .error(let errorText):
+                    Label(
+                        errorText,
+                        systemImage: "exclamationmark.triangle.fill"
+                    )
+                    .foregroundStyle(.yellow)
                 }
             }
             .searchable(text: $searchText, prompt: .searchMovie)
@@ -26,21 +37,40 @@ struct SearchView: View {
     SearchView()
         .environment(
             SearchViewModel(
+                searchRepository: SearchRepository(
+                    client: PreviewSearchClient()
+                ),
                 movieSearchItems: [
                     MovieSearchItem(
                         id: 1,
                         title: "Title",
                         description: "Description"
-                    ),
-                    MovieSearchItem(
-                        id: 2,
-                        title: "Matrix",
-                        description: "Epic sci-fi action film"
                     )
-                ],
+                ]
+            )
+        )
+}
+
+#Preview("Loading") {
+    SearchView()
+        .environment(
+            SearchViewModel(
                 searchRepository: SearchRepository(
                     client: PreviewSearchClient()
-                )
+                ),
+                state: .loading,
+            )
+        )
+}
+
+#Preview("Error") {
+    SearchView()
+        .environment(
+            SearchViewModel(
+                searchRepository: SearchRepository(
+                    client: PreviewSearchClient()
+                ),
+                state: .error("An error occurred"),
             )
         )
 }

@@ -1,19 +1,105 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Movies" : {
-      "extractionState" : "stale",
+    "error_decoding" : {
+      "comment" : "Failed to decode data",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Filme"
+            "value" : "Fehler beim Decodieren der Daten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Movies"
+            "value" : "Failed to decode data."
+          }
+        }
+      }
+    },
+    "error_http_status" : {
+      "comment" : "HTTP error with status code",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serverfehler mit status code %1$@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server responded with status code %1$@."
+          }
+        }
+      }
+    },
+    "error_invalid_response" : {
+      "comment" : "Invalid response from server",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Server antwortete mit invalider Antwort"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Received an invalid response from the server."
+          }
+        }
+      }
+    },
+    "error_network" : {
+      "comment" : "Network error occurred",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Netzwerkfehler ist passiert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network error occurred"
+          }
+        }
+      }
+    },
+    "error_unknown" : {
+      "comment" : "Unknown error occurred",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein unbekannter Fehler ist passiert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown error occurred"
+          }
+        }
+      }
+    },
+    "Loading" : {
+      "comment" : "Text for loading spinner",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lädt…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading..."
           }
         }
       }

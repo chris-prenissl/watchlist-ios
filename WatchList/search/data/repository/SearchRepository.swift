@@ -5,8 +5,8 @@ class SearchRepository {
         self.client = client
     }
 
-    func search(query: String) async -> [MovieSearchItem] {
-        let result = await client.searchMovie(query: query)
+    func search(query: String) async throws -> [MovieSearchItem] {
+        let result = try await client.searchMovie(query: query)
         return result.map { $0.toEntity() }
     }
 }

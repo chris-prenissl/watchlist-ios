@@ -5,58 +5,44 @@ struct TMDBSchema {
     static let searchMoviePath = "search/movie"
 }
 
+struct TMDBSearchParameters {
+    static let query = "query"
+    static let includeAdult = "include_adult"
+}
+
 class TMDBClient: TMDBClientProtocol {
     private let apiKey: String
     private let baseUrl = URL(string: TMDBSchema.tmdbBaseUrl)!
 
     init() {
-        guard
-            let secretsBundleURL = Bundle.main.url(
-                forResource: Constants.secretsBundleKey,
-                withExtension: Constants.plistExtension
-            ),
-            let secretsData = try? Data(contentsOf: secretsBundleURL),
-            let secretsPropertyList =
-                try? PropertyListSerialization.propertyList(
-                    from: secretsData,
-                    options: [],
-                    format: nil
-                ),
-            let secretsDict = secretsPropertyList as? [String: Any],
-            let apiKey = secretsDict[Constants.tmdbApiKeyKey] as? String
-        else {
-            fatalError("Failed to load Secrets")
-        }
-        self.apiKey = apiKey
+        self.apiKey = try! Bundle.main
+            .loadProperty(
+                bundleKey: Constants.secretsBundleKey,
+                propertyKey: Constants.tmdbApiKeyKey,
+                propertyType: String.self
+            )
     }
 
-    func searchMovie(query: String) async -> [MovieSearchItemDto] {
+    func searchMovie(query: String) async throws -> [MovieSearchItemDto] {
         var request = URLRequest(
             url:
                 baseUrl
                 .appendingPathComponent(TMDBSchema.searchMoviePath)
                 .appending(
-                    queryItems: [.init(name: Constants.query, value: query)]
+                    queryItems: [
+                        .init(name: TMDBSearchParameters.query, value: query),
+                        .init(
+                            name: TMDBSearchParameters.includeAdult,
+                            value: false.description
+                        ),
+                    ]
                 )
         )
-        request.setValue(
-            "\(Constants.bearerTokenKey) \(apiKey)",
-            forHTTPHeaderField: Constants.headerAuthorizationKey
+        request.applyBearerToken(token: apiKey)
+
+        let movieSearchResult = try await request.execute(
+            MovieSearchResultDto.self
         )
-
-        do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-
-            guard
-                let movieSearchResult = try? JSONDecoder().decode(
-                    MovieSearchResultDto.self,
-                    from: data
-                )
-            else { return [] }
-            return movieSearchResult.results
-        } catch {
-            debugPrint("Invalid data")
-        }
-        return []
+        return movieSearchResult.results
     }
 }
