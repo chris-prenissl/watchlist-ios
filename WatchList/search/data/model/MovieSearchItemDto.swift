@@ -1,4 +1,4 @@
-struct MovieSearchItemDto: Decodable {
+struct MovieSearchItemDto: Codable {
     let id: Int
     let title: String
     let overview: String

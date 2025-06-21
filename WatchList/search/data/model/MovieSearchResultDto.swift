@@ -1,3 +1,3 @@
-struct MovieSearchResultDto: Decodable {
+struct MovieSearchResultDto: Codable {
     let results: [MovieSearchItemDto]
 }

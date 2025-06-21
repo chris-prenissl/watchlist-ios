@@ -12,9 +12,9 @@ extension URLRequest {
         debugPrint("\(httpMethod ?? "GET") \(url?.absoluteString ?? "")")
     }
 
-    func execute<T>(_: T.Type) async throws -> T where T: Decodable {
+    func execute<T>(_: T.Type, session: URLSession) async throws -> T where T: Decodable {
         do {
-            let (data, response) = try await URLSession.shared.data(for: self)
+            let (data, response) = try await session.data(for: self)
             log()
 
             guard let httpResponse = response as? HTTPURLResponse else {

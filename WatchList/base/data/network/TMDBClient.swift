@@ -47,7 +47,8 @@ class TMDBClient: TMDBClientProtocol {
         request.applyBearerToken(token: apiKey)
 
         let movieSearchResult = try await request.execute(
-            MovieSearchResultDto.self
+            MovieSearchResultDto.self,
+            session: urlSession
         )
         return movieSearchResult.results
     }
