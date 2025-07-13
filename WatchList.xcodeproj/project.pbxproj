@@ -29,9 +29,22 @@
 		21BB764B2DAC00B7002A9EC4 /* WatchListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		21A0107B2E23FC3300465E00 /* Exceptions for "WatchList" folder in "WatchList" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 21BB762F2DAC00B6002A9EC4 /* WatchList */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		21BB76322DAC00B6002A9EC4 /* WatchList */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				21A0107B2E23FC3300465E00 /* Exceptions for "WatchList" folder in "WatchList" target */,
+			);
 			path = WatchList;
 			sourceTree = "<group>";
 		};
@@ -286,7 +299,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = WatchList/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Watch List";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -322,7 +335,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = WatchList/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Watch List";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

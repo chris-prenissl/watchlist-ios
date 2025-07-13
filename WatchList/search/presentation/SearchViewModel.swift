@@ -47,13 +47,9 @@ class SearchViewModel: ObservableObject {
                 self.movieSearchItems = result
                 self.state = .loaded
             }
-        } catch let error as NetworkError {
-            await MainActor.run {
-                self.state = .error(error.localizedDescription)
-            }
         } catch {
             await MainActor.run {
-                self.state = .error("An unknown error occurred.")
+                self.state = .error(error.localizedDescription)
             }
         }
     }

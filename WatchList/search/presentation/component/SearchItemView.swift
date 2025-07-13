@@ -11,14 +11,19 @@ struct SearchItemView: View {
         HStack {
             AsyncImage(url: movieSearchItem.thumbnailUrl) { image in
                 image.resizable()
-                    .scaledToFit()
-                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                    .frame(width: searchPosterWidth, height: searchPosterHeight)
+                    .clipped()
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: standardBorderRadius)
+                    )
             } placeholder: {
                 Color.gray
-                    .scaledToFit()
-                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                    .frame(width: searchPosterWidth, height: searchPosterHeight)
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: standardBorderRadius)
+                    )
             }.frame(height: 100)
-                .padding(8)
+                .padding(standardPadding)
             VStack {
                 Text(movieSearchItem.title)
                     .font(.title2)
@@ -26,7 +31,7 @@ struct SearchItemView: View {
                 Text(movieSearchItem.description)
                     .font(.subheadline)
                     .lineLimit(2)
-                    .padding(.top, 2)
+                    .padding(.top, standardPadding)
             }
         }
     }

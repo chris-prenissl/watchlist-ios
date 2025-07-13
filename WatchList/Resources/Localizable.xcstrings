@@ -103,6 +103,23 @@
           }
         }
       }
+    },
+    "toWatchlist" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zu Watchliste"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "to Watchlist"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

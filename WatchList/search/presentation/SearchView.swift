@@ -14,6 +14,19 @@ struct SearchView: View {
                 case .loaded:
                     List(viewModel.movieSearchItems) { movie in
                         SearchItemView(movieSearchItem: movie)
+                            .swipeActions(
+                                edge: .trailing,
+                                allowsFullSwipe: false
+                            ) {
+                                Button {
+                                    debugPrint("pressed")
+                                } label: {
+                                    Label(
+                                        .toWatchlist,
+                                        systemImage: "plus.rectangle"
+                                    )
+                                }.tint(.blue)
+                            }
                     }
                 case .error(let errorText):
                     Label(
@@ -77,6 +90,13 @@ struct SearchView: View {
 
 struct PreviewSearchClient: TMDBClientProtocol {
     func searchMovie(query: String) async -> [MovieSearchItemDto] {
-        [MovieSearchItemDto(id: 1, title: "Title", overview: "Overview", posterPath: nil)]
+        [
+            MovieSearchItemDto(
+                id: 1,
+                title: "Title",
+                overview: "Overview",
+                posterPath: nil
+            )
+        ]
     }
 }
