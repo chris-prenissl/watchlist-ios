@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State private var searchText = ""
+    @Binding var searchText: String
     @Environment(SearchViewModel.self) private var viewModel
 
     var body: some View {
@@ -19,7 +19,7 @@ struct SearchView: View {
                                 allowsFullSwipe: false
                             ) {
                                 Button {
-                                    debugPrint("pressed")
+                                    debugPrint("TODO: implement")
                                 } label: {
                                     Label(
                                         .toWatchlist,
@@ -37,6 +37,7 @@ struct SearchView: View {
                 }
             }
             .searchable(text: $searchText, prompt: .searchMovie)
+            .searchToolbarBehavior(.minimize)
             .onChange(of: searchText) {
                 Task {
                     await viewModel.searchMovies(query: searchText)
@@ -47,7 +48,7 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView()
+    SearchView(searchText: .constant("Matrix"))
         .environment(
             SearchViewModel(
                 searchRepository: SearchRepository(
@@ -65,7 +66,7 @@ struct SearchView: View {
 }
 
 #Preview("Loading") {
-    SearchView()
+    SearchView(searchText: .constant("Matrix"))
         .environment(
             SearchViewModel(
                 searchRepository: SearchRepository(
@@ -77,7 +78,7 @@ struct SearchView: View {
 }
 
 #Preview("Error") {
-    SearchView()
+    SearchView(searchText: .constant("Matrix"))
         .environment(
             SearchViewModel(
                 searchRepository: SearchRepository(

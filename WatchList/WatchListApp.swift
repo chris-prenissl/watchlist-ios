@@ -1,16 +1,11 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 @main
 struct WatchListApp: App {
-    @StateObject private var searchViewModel = SearchViewModel(
-        searchRepository: SearchRepository(client: TMDBClient())
-    )
-
     var body: some Scene {
         WindowGroup {
-            SearchView()
-                .environmentObject(searchViewModel)
+            AppTabView()
         }
     }
 }
